@@ -1,0 +1,120 @@
+Crasto Mentores · by crasto.ai
+https://crasto.ai
+
+Required Notice: Copyright (c) 2026 Carlos Crasto (https://crasto.ai)
+Required Notice: Crasto Mentores · by crasto.ai · https://crasto.ai
+Required Notice: Licenca comercial / Commercial license: https://crasto.ai
+
+================================================================================
+AVISOS E LICENÇAS DESTE REPOSITÓRIO (português)
+================================================================================
+
+1. O QUE VALE PARA CADA PARTE
+
+   a) Código-fonte criado ou modificado pelo titular (todo o repositório, menos
+      os itens b a f): PolyForm Noncommercial License 1.0.0, arquivo LICENSE.
+   b) Textos dos cérebros dos mentores (pasta cerebros/): Creative Commons
+      Atribuição-NãoComercial 4.0 Internacional (CC BY-NC 4.0), arquivo
+      cerebros/LICENSE.md.
+   c) Trechos originais de um projeto aberto de terceiros: licença MIT (item 3).
+   d) Biblioteca jsPDF (pasta vendor/): licença MIT própria, arquivo
+      vendor/jspdf-LICENSE.txt.
+   e) Fonte Montserrat (pasta brand/fonts/): SIL Open Font License 1.1, arquivo
+      brand/fonts/OFL.txt.
+   f) Marca Crasto.ai, logo, nome "Crasto Mentores" e retratos em caricatura dos
+      mentores: nenhuma licença; todos os direitos reservados (item 4).
+
+2. USO NÃO COMERCIAL E USO COMERCIAL
+
+   Livre, sem pedir: uso pessoal sem fim comercial previsto, estudo, pesquisa,
+   ensino, hobby, e uso por instituições de ensino, entidades beneficentes,
+   instituições de pesquisa pública, de saúde ou segurança pública, de proteção
+   ao meio ambiente e órgãos de governo, nos termos da licença.
+
+   Precisa de licença comercial por escrito do titular (https://crasto.ai),
+   por exemplo: vender ou revender; incluir em produto, serviço, assinatura ou
+   plataforma pagos; usar em consultoria, mentoria, terapia, curso ou
+   atendimento pagos; usar dentro de empresa com fins lucrativos; oferecer a
+   clientes. Estes exemplos ajudam a ler a licença; em caso de dúvida, vale o
+   texto da licença, e você pode perguntar antes.
+
+3. AVISO DE TERCEIROS (MIT)
+
+   Partes do código desta tela derivam de um projeto aberto distribuído sob a
+   licença MIT. Os trechos originais desse projeto continuam sob a licença MIT,
+   nos termos dela, inclusive para uso comercial. As mudanças e os acréscimos
+   feitos pelo titular, e todos os demais arquivos, seguem a PolyForm
+   Noncommercial 1.0.0. Os arquivos que contêm trechos MIT trazem no cabeçalho
+   a linha "SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0 AND MIT".
+   Aviso original, como a licença MIT exige:
+
+   MIT License
+
+   Copyright (c) 2026 AI Automation Society
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to
+   deal in the Software without restriction, including without limitation the
+   rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+   sell copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+   IN THE SOFTWARE.
+
+4. MARCA, RETRATOS E CRÉDITO
+
+   a) A marca Crasto.ai, o logo, o nome "Crasto Mentores" e os retratos em
+      caricatura dos mentores não estão incluídos em nenhuma licença deste
+      repositório. Todos os direitos reservados. Eles não podem ser usados como
+      nome ou identidade de outro produto ou serviço, nem para sugerir apoio ou
+      parceria da Crasto.ai, sem autorização por escrito.
+   b) Você pode dizer, de forma verdadeira, que o seu trabalho é "baseado no
+      Crasto Mentores, by crasto.ai".
+   c) Crédito obrigatório: toda cópia do código, inteira ou em parte, leva as
+      linhas "Required Notice" do topo deste arquivo, como a licença PolyForm
+      exige.
+   d) Crédito na tela: pedimos que quem usar ou modificar a tela mantenha
+      visível o crédito "by crasto.ai" com link para https://crasto.ai. Na
+      licença comercial, esse crédito é condição do contrato.
+   e) Versão modificada não pode se apresentar como a versão oficial do
+      Crasto Mentores.
+
+5. PESSOAS REAIS E INTELIGÊNCIA ARTIFICIAL
+
+   Os mentores são simulados por inteligência artificial a partir de obra
+   pública. Não são as pessoas reais, não falam por elas e não oferecem
+   aconselhamento profissional (financeiro, médico, psicológico ou jurídico).
+   Citações e ideias dos autores pertencem a eles, aos seus herdeiros ou
+   editores, e aparecem como paráfrase ou trecho curto, para comentário e
+   ensino. Pedidos de correção ou retirada: https://crasto.ai
+
+================================================================================
+NOTICES AND LICENSES (English)
+================================================================================
+
+1. Source code created or modified by the licensor: PolyForm Noncommercial
+   License 1.0.0 (LICENSE). Mentor brain texts (cerebros/): CC BY-NC 4.0
+   (cerebros/LICENSE.md). Original portions of a third-party open project: MIT
+   License (notice above, item 3); those portions stay under MIT, including for
+   commercial use. jsPDF (vendor/): its own MIT License. Montserrat font
+   (brand/fonts/): SIL Open Font License 1.1.
+2. Commercial use (selling, paid products or services, paid consulting,
+   mentoring or courses, internal use at a for-profit company) requires a
+   written commercial license: https://crasto.ai
+3. The Crasto.ai trademark, logo, the name "Crasto Mentores" and the mentor
+   caricatures are not licensed; all rights reserved. You may truthfully say
+   your work is "based on Crasto Mentores, by crasto.ai".
+4. Every copy of the code must keep the "Required Notice" lines above. We ask
+   that the on-screen credit "by crasto.ai", linking to https://crasto.ai, stay
+   visible; under a commercial license it is a contractual condition.
+5. The mentors are simulated by artificial intelligence. They are not the real
+   people, do not speak for them and do not provide professional advice.

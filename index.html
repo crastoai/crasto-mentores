@@ -1,0 +1,234 @@
+<!doctype html>
+<!-- Crasto Mentores · by crasto.ai · Copyright (c) 2026 Carlos Crasto · SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0 AND MIT · Contém trechos de projeto aberto sob MIT (aviso completo em NOTICE, item 3). Esses trechos seguem sob MIT; as mudanças e os acréscimos do titular seguem a PolyForm Noncommercial 1.0.0 (LICENSE). -->
+<html lang="pt-BR" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crasto Mentores · crasto.ai</title>
+  <link rel="icon" href="brand/crasto-monogram-navy.png" type="image/png">
+  <script>
+    // tema antes de pintar: ?tema=claro|escuro, senão o último escolhido, senão o do sistema
+    (function () {
+      var q = new URLSearchParams(location.search), t = q.get("tema");
+      if (t !== "claro" && t !== "escuro") { try { t = localStorage.getItem("mentoria.tema"); } catch (e) {} }
+      if (t !== "claro" && t !== "escuro") t = matchMedia("(prefers-color-scheme: dark)").matches ? "escuro" : "claro";
+      document.documentElement.dataset.tema = t;
+      if (q.get("embed") === "1") document.documentElement.classList.add("embed");
+      if (q.get("embed") === "1" && q.get("barra") === "1") document.documentElement.classList.add("barra");
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css?v=26">
+  <link rel="stylesheet" href="prototipo.css?v=26">
+</head>
+<body>
+  <a class="skip-link" href="#stage">Ir para a mesa</a>
+  <div class="proto-faixa" role="note"><b>Modo demonstração.</b> As falas são de exemplo. Para respostas de verdade, conecte a sua IA em Configurações.</div>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-logo logo-claro" src="brand/crasto-wordmark-navy.png" alt="crasto.ai">
+      <img class="brand-logo logo-escuro" src="brand/crasto-wordmark-white.png" alt="crasto.ai">
+      <span class="brand-rule" aria-hidden="true"></span>
+      <img class="brand-mono logo-claro" src="brand/crasto-monogram-navy.png" alt="crasto.ai">
+      <img class="brand-mono logo-escuro" src="brand/crasto-monogram-white.png" alt="crasto.ai">
+      <span class="brand-name">Crasto Mentores</span>
+    </div>
+    <ol class="stepper" id="stepper" aria-label="Andamento da mentoria">
+      <li data-step="setup">Pauta</li>
+      <li data-step="round1">Aberturas</li>
+      <li data-step="cruxes">Divergências</li>
+      <li data-step="round2">Debate</li>
+      <li data-step="round3">Votação</li>
+      <li data-step="verdict" id="stepVerdict">Veredito</li>
+    </ol>
+    <span class="step-mini" id="stepMini" hidden></span>
+    <div class="top-actions">
+      <button class="pill verdict-btn" id="verdictBtn" type="button">Veredito</button>
+      <button class="ghost hide-sm" id="guideBtn" type="button">Como funciona</button>
+      <button class="ghost hide-sm" id="historyBtn" type="button">Sessões anteriores</button>
+      <button class="ghost cfg-btn" id="cfgBtn" type="button" aria-haspopup="dialog" title="Conectar a sua IA e alimentar o cérebro dos mentores"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="cfg-txt">Configurações</span></button>
+      <button class="ghost" id="newBtn" type="button" hidden>Nova pergunta</button>
+      <span class="voz-ctl" id="vozCtl" hidden>
+        <button class="ghost voz-btn" id="vozBtn" type="button" aria-pressed="false"><span id="vozIco" aria-hidden="true"></span><span class="voz-txt" id="vozTxt">Voz ligada</span></button>
+        <span class="voz-pop"><input id="vozVol" class="voz-vol" type="range" min="0" max="100" step="5" value="70" aria-label="Volume da voz" title="Volume da voz"></span>
+      </span>
+      <button class="ghost icon hide-sm" id="themeBtn" type="button" aria-label="Alternar entre tema claro e escuro" title="Tema claro ou escuro"></button>
+      <div class="mais" id="maisCtl">
+        <button class="ghost" id="maisBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="maisMenu">Mais</button>
+        <div class="mais-menu" id="maisMenu" hidden>
+          <button type="button" data-mais="guide">Como funciona</button>
+          <button type="button" data-mais="history">Sessões anteriores</button>
+          <button type="button" data-mais="tema">Tema claro ou escuro</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="topic" id="topic" hidden>
+    <div class="topic-main">
+      <div class="label">Em discussão <span class="tag-ex big" id="exBadge" hidden>Exemplo · em inglês</span></div>
+      <h1 id="topicTitle"></h1>
+      <p class="topic-duvida" id="topicDuvida" hidden></p>
+    </div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <main class="layout">
+    <section class="stage-wrap" aria-label="A mesa da mentoria">
+      <div class="sala-bar" id="salaBar">
+        <div class="modo" id="modoSel" role="radiogroup" aria-label="Modo">
+          <button type="button" role="radio" data-modo="mesa" aria-checked="true">Mesa</button>
+          <button type="button" role="radio" data-modo="conversa" aria-checked="false" tabindex="-1">Conversa</button>
+        </div>
+        <div class="linha-wrap" id="linhaWrap">
+          <div class="linha-head"><label class="linha-rot" id="linhaRot" for="linhaSelect">Grupo</label><span class="linha-sala" id="linhaSala"></span></div>
+          <div class="linha-seg" id="linhaSeg" role="radiogroup" aria-labelledby="linhaRot"></div>
+          <select class="linha-select" id="linhaSelect"></select>
+          <p class="linha-ajuda" id="linhaAjuda">Escolha o grupo e a mesa já senta. Ou monte a sua.</p>
+        </div>
+        <div class="lugares-wrap" id="lugaresWrap">
+          <span class="linha-rot" id="lugaresRot">Lugares na mesa</span>
+          <div class="lugares-ctl" role="group" aria-labelledby="lugaresRot">
+            <button type="button" class="lugares-btn" id="lugaresMenos" aria-label="Menos um lugar">−</button>
+            <output class="lugares-val" id="lugaresVal" aria-live="polite">7</output>
+            <button type="button" class="lugares-btn" id="lugaresMais" aria-label="Mais um lugar">+</button>
+          </div>
+          <p class="linha-ajuda" id="lugaresAjuda">De 1 a 12.</p>
+        </div>
+      </div>
+      <h2 class="mesa-titulo" id="mesaTitulo" hidden></h2>
+      <div class="stage" id="stage">
+        <div class="wall" aria-hidden="true"></div>
+        <div class="spot" id="spot" aria-hidden="true"></div>
+        <div id="seats"></div>
+        <div class="table" id="table" aria-hidden="true"><img class="etch" src="brand/crasto-wordmark-white.png" alt=""></div>
+        <div id="plates"></div>
+        <svg class="links" id="links" aria-hidden="true"></svg>
+
+        <div class="center" id="center">
+          <div class="waiting" id="waiting" hidden>
+            <span class="pulse"><i></i>A mesa está aberta</span>
+            <h2 data-type>Traga uma decisão para a mesa</h2>
+            <p id="waitText">Escolha quem senta à mesa, escreva a decisão e convoque. A mesa debate aqui, ao vivo.</p>
+          </div>
+
+          <div class="caption" id="caption" hidden>
+            <div class="cap-head">
+              <span class="cap-av" id="capAv"></span>
+              <span class="cap-who" id="capWho"></span>
+              <span class="cap-tag" id="capTag"></span>
+            </div>
+            <p class="cap-text" id="capText"></p>
+            <div class="cap-sub" id="capSub"></div>
+          </div>
+
+          <div class="waitcard" id="waitcard" hidden aria-live="polite">
+            <div class="wc-top"><span class="wc-step" id="wcStep"></span><span class="wc-time" id="wcTime"></span></div>
+            <p class="wc-head" id="wcHead"></p>
+            <p class="wc-sub" id="wcSub"></p>
+            <p class="wc-muse" id="wcMuse"></p>
+            <div class="wc-bar"><i id="wcBar"></i></div>
+            <p class="wc-nudge" id="wcNudge" hidden>Nada novo há um tempo. Confira a sua IA em Configurações.</p>
+          </div>
+
+          <div class="cruxes" id="cruxes" hidden></div>
+          <div class="plate" id="plate" hidden></div>
+        </div>
+
+        <div class="playbar" id="playbar" hidden>
+          <span class="queue" id="queueInfo"></span>
+          <div class="speed" role="radiogroup" aria-label="Velocidade">
+            <button type="button" data-speed="1" aria-pressed="true">1x</button>
+            <button type="button" data-speed="1.6" aria-pressed="false">1,6x</button>
+            <button type="button" data-speed="2.5" aria-pressed="false">2,5x</button>
+          </div>
+          <button type="button" class="skip" id="skipBtn">Pular adiante</button>
+        </div>
+      </div>
+      <button class="quem-btn" id="quemBtn" type="button" aria-controls="painel" aria-expanded="false"><span id="quemTxt">Quem senta à mesa</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+      <div class="conv-dock" id="convDock" hidden>
+        <div class="conv-hist" id="convHist"></div>
+        <form class="composer conv-form" id="convForm" autocomplete="off">
+          <label class="sr" for="convTxt" id="convLbl">Escreva para o mentor</label>
+          <textarea id="convTxt" rows="3" maxlength="600" placeholder="Escreva para o mentor"></textarea>
+          <div class="composer-row"><span class="composer-count">A resposta vem por texto e voz, em poucas linhas.</span><button class="ghost" type="button" id="convVoltar">Voltar à mesa</button><button class="ghost mic-btn" type="button" data-ditar="convTxt" aria-pressed="false" title="Falar em vez de digitar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span class="mic-txt">Falar</span></button><button class="pill" id="convEnviar" type="submit">Enviar</button></div>
+          <p class="composer-msg" id="convMsg" role="alert" hidden></p>
+        </form>
+        <p class="conv-prep" id="convPrep" hidden></p>
+      </div>
+      <div class="mesa-dock" id="mesaDock">
+        <form class="composer" id="composer" autocomplete="off">
+          <label class="sr" for="decisaoTxt">Traga a sua decisão</label>
+          <textarea id="decisaoTxt" rows="3" maxlength="2000" placeholder="Traga a sua decisão: o que você precisa decidir, as opções, seus números e para que lado você pende."></textarea>
+          <div class="composer-row"><span class="composer-count" id="decisaoCount">0 de 2.000</span><span class="composer-count">Não escreva dados pessoais de terceiros (nome, CPF, CNPJ).</span><button class="ghost mic-btn" type="button" data-ditar="decisaoTxt" aria-pressed="false" title="Falar em vez de digitar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span class="mic-txt">Falar</span></button><button class="pill" id="convocarBtn" type="submit">Convocar a mesa</button></div>
+          <p class="composer-msg" id="composerMsg" role="alert" hidden></p>
+          
+        </form>
+        <div class="mesa-status" id="mesaStatus" hidden aria-live="polite">
+          <span class="pulse"><i></i><span id="msTitulo">A mesa está pensando</span></span>
+          <p id="msSub"></p>
+          <div class="ms-ask" id="msAsk" hidden>
+            <div class="ms-q" id="msQ"></div>
+            <textarea id="msResp" rows="3" maxlength="1500" placeholder="Responda ao Mediador"></textarea>
+            <div class="composer-row"><button class="ghost" id="msCancel" type="button">Cancelar a mesa</button><button class="pill" id="msEnviar" type="button">Responder</button></div>
+          </div>
+          <button class="ghost small" id="msCancel2" type="button" hidden>Cancelar a mesa</button>
+        </div>
+        <details class="more-opts" id="moreOpts" hidden><summary>Mais opções: copiar o comando para o Claude Code</summary>
+        <div class="cmd" id="cmdBox">
+          <code id="cmdText"></code>
+          <button class="pill small" type="button" id="cmdCopy">Copiar comando</button>
+        </div>
+        </details>
+        <p class="idle-note" id="idleNote" role="note"><b>Os mentores só falam depois que você convoca a mesa.</b> Escreva ou fale a sua decisão aqui e convoque. Também dá para <button class="linklike" id="idleHist" type="button">abrir uma sessão anterior</button>.</p>
+      </div>
+    </section>
+
+    <aside class="panel" id="painel" aria-labelledby="panelHead">
+      <div class="panel-head"><span id="panelHead">Quem senta à mesa</span><button class="ghost small panel-close" id="panelClose" type="button">Fechar</button></div>
+      <div class="tabpanel" id="feed"></div>
+      <div class="panel-foot" id="pickFoot" hidden></div>
+    </aside>
+  </main>
+  <p class="by-crasto-linha"><a class="by-crasto" id="byCrasto" href="https://crasto.ai" target="_blank" rel="noopener">by crasto.ai</a></p>
+  <p class="disclaimer">Mentores simulados por IA a partir da obra pública de cada pessoa e desenhados como caricatura. Não são as pessoas e não falam por elas. Não é aconselhamento profissional (jurídico, financeiro, médico ou psicológico): quem decide é você. O conhecimento de cada um é texto aberto; quem responde é a IA que você conectar.</p>
+
+  <p class="suporte-linha">Dúvidas ou dificuldades para implementar? <a href="https://wa.me/5511913685973?text=Oi%20Julie!%20Vim%20do%20Crasto%20Mentores%20e%20tenho%20uma%20d%C3%BAvida%20para%20implementar." target="_blank" rel="noopener">Fale com a Crasto.ai no WhatsApp: (11) 91368-5973</a></p>
+
+  <div class="panel-scrim" id="panelScrim" hidden></div>
+
+  <div class="sheet" id="verdictSheet" role="dialog" aria-modal="true" aria-label="Veredito" hidden>
+    <div class="sheet-inner" id="verdictBody"></div>
+  </div>
+
+  <dialog id="cardDialog" class="card-dialog">
+    <div id="cardBody"></div>
+    <form method="dialog"><button class="ghost">Fechar</button></form>
+  </dialog>
+
+  <dialog id="guideDialog" class="card-dialog">
+    <div id="guideBody"></div>
+    <form method="dialog"><button class="ghost">Fechar</button></form>
+  </dialog>
+
+  <dialog id="cfgDialog" class="card-dialog cfg-dialog" aria-label="Configurações">
+    <div id="cfgBody"></div>
+    <form method="dialog"><button class="ghost">Fechar</button></form>
+  </dialog>
+
+  <dialog id="historyDialog" class="card-dialog">
+    <h3>Sessões anteriores</h3>
+    <p class="muted">Abra o veredito, reveja a mesa como aconteceu ou baixe o PDF.</p>
+    <ul class="history" id="historyList"></ul>
+    <form method="dialog"><button class="ghost">Fechar</button></form>
+  </dialog>
+
+  <div class="toast" id="toast" hidden role="status"></div>
+
+  <script src="dados.js?v=26"></script>
+  <script src="demo.js?v=26"></script>
+  <script src="pdf.js?v=26"></script>
+  <script src="motor.js?v=26"></script>
+  <script src="config.js?v=26"></script>
+  <script src="app.js?v=26"></script>
+</body>
+</html>
